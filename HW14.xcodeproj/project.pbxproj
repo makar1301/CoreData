@@ -155,12 +155,23 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		04FD0B2C26163BB1002B068E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		04FD08F6260C85D9002B068E /* HW14 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04FD090E260C85DD002B068E /* Build configuration list for PBXNativeTarget "HW14" */;
 			buildPhases = (
 				A75B0F87ED075C19F0F5D077 /* [CP] Check Pods Manifest.lock */,
+				04FD0B2C26163BB1002B068E /* Headers */,
 				04FD08F3260C85D9002B068E /* Sources */,
 				04FD08F4260C85D9002B068E /* Frameworks */,
 				04FD08F5260C85D9002B068E /* Resources */,

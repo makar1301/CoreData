@@ -50,9 +50,6 @@ URLSession.shared.dataTask(with: url) { (data, responce, error) in
     do {
         let dailyWheather = try JSONDecoder().decode(DailyWheather.self, from: data)
             dailiWheatherDelegate = dailyWheather
-        
-            
-        
         DispatchQueue.main.async {
             for item in dailiWheatherDelegate!.list {
             let items = WheatherRealm()

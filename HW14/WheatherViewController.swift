@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 class WheatherViewController: UIViewController, DailyWheatherLoaderDelegate {
 
@@ -14,12 +13,7 @@ class WheatherViewController: UIViewController, DailyWheatherLoaderDelegate {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var wheatherLabel: UILabel!
     @IBOutlet weak var feelsLikeLabel: UILabel!
-    
-   
-    
-    
-    
-    
+
     func updateDailyWheather(){
         wheatherTableView.reloadData()
     }
@@ -28,16 +22,17 @@ class WheatherViewController: UIViewController, DailyWheatherLoaderDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        WheatherList = realm.objects(WheatherRealm.self)
         delegate = self
+        WheatherList = realm.objects(WheatherRealm.self)
+        updateDailyWheather()
         wheatherTableView.backgroundColor = .systemBlue
+        
         cityLabel.text = Wheather.shared2.city
         wheatherLabel.text = "\(Int(Wheather.shared2.wheather ?? 0)) ºC"
         feelsLikeLabel.text = "Ощущается как \(Int(Wheather.shared2.feelsLike ?? 0))ºC"
         loadedWheather()
         getDailyWheather()
-        updateDailyWheather()
+      
         
     }
     
