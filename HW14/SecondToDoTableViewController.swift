@@ -6,22 +6,14 @@
 //
 
 import UIKit
-import CoreData
+
 
 class SecondToDoTableViewController: UITableViewController {
 
     
     override func  viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let fenchRequest: NSFetchRequest<TasksCoreData> = TasksCoreData.fetchRequest()
-        do {
-            ToDoCore.shared.SecondToDoList = try context.fetch(fenchRequest)
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
+        ToDoCore.shared.loadingCoreData()
     }
     
     override func viewDidLoad() {

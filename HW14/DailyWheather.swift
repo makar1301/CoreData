@@ -39,7 +39,7 @@ var delegate: DailyWheatherLoaderDelegate?
 var dailiWheatherDelegate: DailyWheather?
 
 func getDailyWheather(){
-let urlString = "https://api.openweathermap.org/data/2.5/forecast?q=Moscow&units=metric&appid=1e2d102e87d25afa699664c4340f1530"
+let urlString = "https://api.openweathermap.org/data/2.5/forecast?q=Moscow&units=metric&appid=899fb4de4adfb85f10a7a745e7452c8d"
  
     guard let url = URL(string: urlString) else {return}
     
@@ -51,6 +51,7 @@ URLSession.shared.dataTask(with: url) { (data, responce, error) in
         let dailyWheather = try JSONDecoder().decode(DailyWheather.self, from: data)
             dailiWheatherDelegate = dailyWheather
         DispatchQueue.main.async {
+           
             for item in dailiWheatherDelegate!.list {
             let items = WheatherRealm()
                 items.date = item.dt_txt
@@ -61,14 +62,15 @@ URLSession.shared.dataTask(with: url) { (data, responce, error) in
                 }
             }
             delegate?.updateDailyWheather()
-            
         }
-            
-    
     }catch let error {
         print(error)
     }
 }.resume()
-    
+}
+func updateDaily() {
+    try! realm.write {
+        realm.delete(WheatherList)
+    }
 }
 

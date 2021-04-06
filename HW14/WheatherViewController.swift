@@ -14,6 +14,15 @@ class WheatherViewController: UIViewController, DailyWheatherLoaderDelegate {
     @IBOutlet weak var wheatherLabel: UILabel!
     @IBOutlet weak var feelsLikeLabel: UILabel!
 
+    @IBAction func updateButton(_ sender: UIButton) {
+        updateDaily()
+        getDailyWheather()
+        loadedWheather()
+        updateDailyWheather()
+    }
+    
+    
+    
     func updateDailyWheather(){
         wheatherTableView.reloadData()
     }
@@ -23,13 +32,13 @@ class WheatherViewController: UIViewController, DailyWheatherLoaderDelegate {
         delegate = self
         WheatherList = realm.objects(WheatherRealm.self)
         getDailyWheather()
-        updateDailyWheather()
+        loadedWheather()
         wheatherTableView.backgroundColor = .systemBlue
         
         cityLabel.text = Wheather.shared2.city
         wheatherLabel.text = "\(Int(Wheather.shared2.wheather ?? 0)) ºC"
         feelsLikeLabel.text = "Ощущается как \(Int(Wheather.shared2.feelsLike ?? 0))ºC"
-        loadedWheather()
+        
         
     }
     
@@ -41,7 +50,19 @@ class WheatherViewController: UIViewController, DailyWheatherLoaderDelegate {
        let url = URL(string: urlString)
        URLSession.shared.dataTask(with: url!) { (data, responce, error) in
            do {
-               let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String : AnyObject]
+            
+            guard let data = data else {
+                guard Wheather.shared2.city != nil else {
+                
+                DispatchQueue.main.async {
+                self.cityLabel.text = "Город"
+                self.wheatherLabel.text = "Нет связи"
+                self.feelsLikeLabel.text = "Проверьте соединение"
+                }
+                    return
+                }
+                return }
+               let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [String : AnyObject]
                    cityName = json["name"] as? String
 
                if let main = json["main"] {
@@ -49,7 +70,6 @@ class WheatherViewController: UIViewController, DailyWheatherLoaderDelegate {
                    temp = main["temp"] as? Double
                }
                DispatchQueue.main.async {
-                  self.cityLabel.text = cityName
                 Wheather.shared2.city = cityName
                 Wheather.shared2.wheather = temp
                 Wheather.shared2.feelsLike = feelsLike

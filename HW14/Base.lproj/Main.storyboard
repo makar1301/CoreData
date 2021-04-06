@@ -221,6 +221,26 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76q-EN-FpD">
+                                        <rect key="frame" x="172" y="262" width="70" height="30"/>
+                                        <state key="normal" title="Обновить">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWeight">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="updateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="44f-mD-peP"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
@@ -230,9 +250,11 @@
                                     <constraint firstItem="3by-Br-rvZ" firstAttribute="centerY" secondItem="0HP-Y5-ZEv" secondAttribute="centerY" id="P4Y-gT-5g9"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WKm-hn-49L" secondAttribute="trailing" constant="20" symbolic="YES" id="RdC-Of-D0L"/>
                                     <constraint firstItem="WKm-hn-49L" firstAttribute="leading" secondItem="0HP-Y5-ZEv" secondAttribute="leading" constant="30" id="WcY-Bj-bd8"/>
+                                    <constraint firstItem="76q-EN-FpD" firstAttribute="centerX" secondItem="0HP-Y5-ZEv" secondAttribute="centerX" id="fuj-Ti-fUB"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3by-Br-rvZ" secondAttribute="trailing" constant="20" symbolic="YES" id="jYJ-aU-6Xa"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dt5-Ak-fxh" secondAttribute="trailing" constant="20" symbolic="YES" id="mNm-TT-zf2"/>
                                     <constraint firstAttribute="height" constant="300" id="rS4-lW-sBz"/>
+                                    <constraint firstAttribute="bottom" secondItem="76q-EN-FpD" secondAttribute="bottom" constant="8" id="v6V-OF-hTl"/>
                                     <constraint firstItem="WKm-hn-49L" firstAttribute="top" secondItem="3by-Br-rvZ" secondAttribute="bottom" constant="30" id="ywT-yg-gqR"/>
                                 </constraints>
                             </view>

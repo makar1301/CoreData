@@ -50,5 +50,17 @@ func remove2Item(at index: Int, item: TasksCoreData){
         }
     }
 }
+    
+    func loadingCoreData() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fenchRequest: NSFetchRequest<TasksCoreData> = TasksCoreData.fetchRequest()
+        do {
+            ToDoCore.shared.SecondToDoList = try context.fetch(fenchRequest)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
 
 }
